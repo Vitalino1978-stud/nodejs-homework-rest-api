@@ -29,9 +29,16 @@ const contactsSchema = Schema(
     favorite: {
       type: Boolean,
       default: false,
+
+		},
+		owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
     },
   },
-  { versionKey: false, timestamps: false },
+	{ versionKey: false, timestamps: false },
+	
+
 );
 
 const Contact = model('contact', contactsSchema);

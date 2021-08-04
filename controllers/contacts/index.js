@@ -1,4 +1,5 @@
 const getAll = require('./getAll')
+// console.log(getAll)
 const getById = require('./getById')
 const del = require('./del')
 const patch = require('./patch')
