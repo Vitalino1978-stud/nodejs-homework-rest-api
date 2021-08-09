@@ -6,7 +6,7 @@ const avatarsUpload = async (req, res, next) => {
 	// const { email, password } = req.body
 	// const result = await User.findOneAndUpdate({_id: contactId}, {...req.body}, {new: true})
 // 
-const {path}= req.file
+// const {path}= req.file
 try {
 	const token = req.headers.authorization.split(" ")[1];
 	const { JWT_SECRET_KEY } = process.env;
@@ -15,7 +15,7 @@ try {
 	// console.log(user)
 	const updateAvatar = await User.findOneAndUpdate({_id: user.id}, {avatarURL: "noImage"}, {new: true} )
 	console.log(updateAvatar)
-	res.json({avatarURL: "noImage", file: path})
+	res.json({avatarURL: "noImage"})
 	
 }
 catch (error) {next (error)}

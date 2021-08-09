@@ -4,6 +4,7 @@ const { users } = require('../../controllers')
 const multer = require('multer')
 const path = require('path')
 const tempDir = path.join(process.cwd(), "temp")
+console.log(tempDir)
 
 router.post('/signup', users.signup)
 router.post('/login', users.login)
