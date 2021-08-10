@@ -18,7 +18,7 @@ const saveToTempMiddleware = multer({ storage: storageSettings })
 const resizeAndUpload = (req, res, next) => {
 	const {path: tempDir } = req.file
 	try {
-		Jimp.read(req.file.path).then(image => {
+		jimp.read(req.file.path).then(image => {
       image.resize(250, 250);
 			image.write(tempDir);
 		const token = req.headers.authorization.split(" ")[1];
