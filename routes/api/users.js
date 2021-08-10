@@ -21,7 +21,7 @@ const resizeAndUpload = (req, res, next) => {
 	const { JWT_SECRET_KEY } = process.env;
     jwt.verify(token, JWT_SECRET_KEY);
     const user = jwt.decode(token);
-		res.json({path, message:'from resizeAndUpload', userId: user._id})
+		res.json({path, message:'from resizeAndUpload', userId: user._id, data: {user}})
 	} catch (error) {
 		next(error)
 	}
