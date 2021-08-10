@@ -5,6 +5,7 @@ const multer = require('multer')
 const path = require('path')
 const tempDir = path.join(process.cwd(), "temp")
 const fs = require('fs/promises')
+const jwt = require('jsonwebtoken')
 console.log(tempDir)
 
 router.post('/signup', users.signup)
@@ -16,7 +17,11 @@ const saveToTempMiddleware = multer({ storage: storageSettings })
 const resizeAndUpload = (req, res, next) => {
 	const { path } = req.file
 	try {
-		res.json({path, message:'from resizeAndUpload'})
+		const token = req.headers.authorization.split(" ")[1];
+	const { JWT_SECRET_KEY } = process.env;
+    jwt.verify(token, JWT_SECRET_KEY);
+    const user = jwt.decode(token);
+		res.json({path, message:'from resizeAndUpload', userId: user._id})
 	} catch (error) {
 		next(error)
 	}
