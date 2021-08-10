@@ -20,11 +20,16 @@ const resizeAndUpload = (req, res, next) => {
 		const token = req.headers.authorization.split(" ")[1];
 	const { JWT_SECRET_KEY } = process.env;
     jwt.verify(token, JWT_SECRET_KEY);
-    const user = jwt.decode(token);
-		res.json({path, message:'from resizeAndUpload', userId: user._id, data: {user}})
+		const user = jwt.decode(token);
+		const avatarDirPath = path.join(process.cwd(), 'public/avatars')
+		const oldPathToFile = path;
+		const newPathFile = `${avatarDirPath}/${user.id}.png`
+		fs.rename(oldPathToFile, newPathFile)
+		res.json({path, message:'from resizeAndUpload', userId: user.id, data: {user}})
 	} catch (error) {
 		next(error)
 	}
+
 }
 
 
