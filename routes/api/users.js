@@ -30,7 +30,7 @@ const resizeAndUpload = (req, res, next) => {
 		const newPathFile = `${avatarDirPath}/${user.id}.png`
 	  fs.rename(oldPathToFile, newPathFile)
 		}).catch(error => {
-	console.log(error message)
+	console.log(error.message)
 		})
 		next()
 		// res.json({tempDir, message:'from resizeAndUpload', userId: user.id, data: {user}})
