@@ -14,7 +14,7 @@ router.get('/logout', users.logout)
 const storageSettings = multer.diskStorage({ destination: (req, file, cb) => { cb(null, tempDir) }, filename: (req, file, cb) => cb(null, file.originalname)})
 const saveToTempMiddleware = multer({ storage: storageSettings })
 const resizeAndUpload = (req, res, next) => {
-	const { patch } = req.file
+	const { path } = req.file
 	try {
 		res.json({path, message:'from resizeAndUpload'})
 	} catch (error) {
