@@ -1,12 +1,12 @@
 // const Joi = require('joi')
 const bcrypt = require('bcrypt')
 const gravatar = require('gravatar')
-
 const { User } = require('../../model')
 
 
 const signup = async (req, res) => {
 	const { email, password } = req.body
+
 	const URL = gravatar.url(email, {
   s: '200',
   r: 'pg',
