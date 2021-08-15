@@ -6,7 +6,6 @@ const login = async (req, res) => {
 	const { email, password } = req.body
 	try {
 			const candidate = await User.findOne({ email })
-// console.log(candidate)
 		if (!candidate) {
 			return res.status(401).json({
 				status: 'error',
