@@ -9,7 +9,7 @@ const reverify = async (req, res, next) => {
 			return
 		}
 		const candidate = await User.findOne({ email })
-		console.log(candidate.verifyCode);
+		// console.log(candidate.verifyCode);
 		if (candidate === true || candidate.verify === true) {
 		// if (candidate?.verify === true) {
 			 res.status(400).json({
