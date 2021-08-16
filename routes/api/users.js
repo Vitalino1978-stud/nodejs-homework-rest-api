@@ -12,6 +12,7 @@ router.post('/signup', users.signup)
 router.post('/login', users.login)
 router.get('/logout', users.logout)
 router.get('/verify/:verificationCode', users.verify)
+router.post('/verify', users.reverify)
 
 const storageSettings = multer.diskStorage({ destination: (req, file, cb) => { cb(null, tempDir) }, filename: (req, file, cb) => cb(null, file.originalname)})
 const saveToTempMiddleware = multer({ storage: storageSettings })
