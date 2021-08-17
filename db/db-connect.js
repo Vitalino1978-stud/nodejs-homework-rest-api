@@ -6,7 +6,8 @@ module.exports = mongoose
   .connect(DB_HOST, {
     useCreateIndex: true,
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+		useUnifiedTopology: true,
+		useFindAndModify: false,
   })
   .then(() => {
     console.log('Database connection successful');

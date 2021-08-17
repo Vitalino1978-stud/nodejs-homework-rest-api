@@ -2,6 +2,8 @@
 const bcrypt = require('bcrypt')
 const gravatar = require('gravatar')
 const { User } = require('../../model')
+const { v4 } = require('uuid')
+const sendCodeToEmail = require('../../helpers/sendCodeToEmail')
 
 
 const signup = async (req, res) => {
@@ -25,7 +27,14 @@ const signup = async (req, res) => {
 		}
 		const salt = bcrypt.genSaltSync(10)
 		const cryptedPassword = bcrypt.hashSync(password, salt)
-		const newUser = await User.create({ email, password: cryptedPassword, avatarURL: URL})
+		const code = v4();
+		const newUser = await User.create({ email, password: cryptedPassword, avatarURL: URL, verifyCode: code })
+		const mail = {
+			to: email,
+			subject: "please, verify your email",
+			text: `press next link http://localhost:3000/api/users/verify/${code} to verify your email`
+		}
+		await sendCodeToEmail(mail)
 		res.status(200).json({email, password: newUser.password})
 		
 	} catch (error) {res.status(404).json({error: error.message})

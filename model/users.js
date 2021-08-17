@@ -19,7 +19,17 @@ const usersSchema = Schema(
   token: {
     type: String,
     default: null,
+		},
+	
+  verify: {
+    type: Boolean,
+    default: false,
   },
+  verifyCode: {
+    type: String,
+    required: [true, 'Verify token is required'],
+  },
+
 
 avatarURL: {type: String},
 
